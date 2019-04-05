@@ -1,0 +1,49 @@
+---
+title: "First-Year Blocking Project Milestone 3"
+author: "Adiya Abdilkhay, Dasha Metropolitansky, Alistair Gluck, Christopher Milne, April Chen, Niel Schrage, Ilkin Bayramli, Stephanie Yao"
+date: '04/05/2019'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(readxl)
+```
+
+#Data Collection Overview
+
+
+Data collection and cleaning has taken up the bulk of our time that we have devoted to the project, and we are still continuously cleaning the data and trying to get it into a form from which we can create our Shiny app and various graphics.  
+
+Data was collected first by using the Harvard Facebook website that contains everyone in the Class of 2022 and their names, this would eventually be updated with everyone’s houses, which would be of great help and eliminate the need for a second survey.  
+
+The main data collection was conducted via survey that we sent to each dorm’s mailing list and tabled at annenberg to publicize.  The survey included questions of current living situation, legacy, international, and financial aid status.  We gathered the athlete data from the various rosters on the Harvard Athletics website.  
+
+We also reached out individually to our proctors, Expos preceptors, and friends to further the network of awareness. After this initial push, which occured before and after housing day, we emailed individually all of the people in the class of 2022 who had not yet completed the survey.  This led to a second surge of responses, which now put us over half of the class.  
+
+The next step is to clean the data to enable us to use every entry in calculations (this is ongoing).  We potentially plan to create functions to help us.
+
+
+```{r}
+
+students <- read_xlsx("students.xlsx")
+  # i am uploading the data as an excel file and assigning it to a variable name
+students %>%
+  na.omit(gender) %>%  
+  # not considering empty rows in the gender column in this graph to observe the distribution of athletes and genders more easily
+  ggplot(aes(x = athlete, fill = gender)) +
+  # going to observe the comparison of athletes vs non-athletes and as well as that observe the gender distribution in these two groups
+  geom_bar() +
+   # using a bar graph to easily observe the comparison of the two groups
+  scale_fill_manual("Gender", values = c("Male" = "blue", "Female" = "Red", "Other" = "green")) +
+  # setting the colors for different genders to fill and assigning the legend label to be Gender
+  labs(title = "Distribution of First-Year Student Athletes Depending on Gender",
+       subtitle = "According to the survey, there are more female athletes than male athletes",
+       caption = "Source: Blocking Project Survey") +
+  xlab("Athlete Status") +
+  ylab("Number of Students")
+ # assigning title, subtitle, caption, and y and x-axis labels that are informative and concise
+
+```
+
