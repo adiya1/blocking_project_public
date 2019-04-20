@@ -1,0 +1,13 @@
+name: Blocking_Milestone
+title: Blocking_Milestone
+username:
+account: christophermilne
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 878360
+bundleId: 2024585
+url: https://christophermilne.shinyapps.io/blocking_milestone/
+when: 1555719046.17342
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: edited_students_shiny.csv
